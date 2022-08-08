@@ -1,0 +1,73 @@
+%%%%% Independence symbol definition %%%%%
+
+% \textcolor{red}{
+% Please remove this section if you do not write any information.
+% }
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}} 
+%%%%%%%%%%%%%%%%%%%
+
+%%%%% Nomenclature environment %%%%%
+\newbox\tempbox
+\newenvironment{nomenclature}{%
+   \newcommand\entry[2]{%
+       \setbox\tempbox\hbox{##1.\quad}
+       \hangindent\wd\tempbox\noindent{##1}\quad\ignorespaces##2\par}
+       %\section*{NOMENCLATURE}}{\par\addvspace{12pt}}
+       \section*{Nomenclature}}{\par\addvspace{12pt}}
+%%%%%%%%%%%%%%  
+
+\begin{nomenclature}
+    % \entry{$$}{}
+    \entry{$LiDAR$}{Light Detection and Ranging}
+    \entry{$HFR$}{Human Following Robot}
+    \entry{$ROS$}{Robot Operating System}
+    \entry{$RANSAC$}{Random Sample Consensus}
+    \entry{$P$}{Initial point cloud data}
+    \entry{$p_i$}{Point $i$ in point cloud data $P$}
+    \entry{$d_t$}{Distance threshold for RANSAC}
+    \entry{$P^*$}{Point cloud data $P^* \subset P$ after being filtered by RANSAC}
+    \entry{$ROI$}{Region of Interest}
+    \entry{$C$}{List of point cloud clusters from $P$}
+    \entry{$d^*$}{Clustering threshold}
+    \entry{$r$}{Detected range of LiDAR}
+    \entry{$\theta$}{LiDAR vertical angle resolution}
+    \entry{$SVM$}{Support Vector Machine}
+    \entry{$EKF$}{Extended Kalman Filter}
+    \entry{$C-SVC$}{C-Support Vector Classification}
+    \entry{$RBF$}{Gaussian Radial Basic Function}
+    \entry{$TP$}{True Positive}
+    \entry{$TN$}{True Negative}
+    \entry{$FP$}{False Positive}
+    \entry{$FN$}{False Negative}
+    \entry{$PID$}{Proportional, Integral and Derivative Control}
+    \entry{$Rviz$}{ROS Visualisation}
+\end{nomenclature}
+
+
+%Example%
+
+% \begin{nomenclature}
+% 	\entry{$X$}{Random variable.}
+% 	\entry{$x_i$}{State $i$ of $X_i$.}
+%     \entry{$\Pi_i$}{Variable $X_i$'s parent.}
+%     \entry{$\pi_i$}{State $i$ of $X_i$'s parent.}
+%     \entry{$m$}{Number of variables in the network}
+%     \entry{$n$}{Number of states of a random variable}
+%     \entry{$P(\textbf{X})$}{Joint probability distribution.}
+%     \entry{$P(x_i)$}{Probability distribution of a random variable $X_i$ in state $x_i$.}
+%     \entry{$P(x_i|\pi_i)$}{Probability of child node $x_i$ conditioned to its parent $\pi_i$.}
+%     \entry{$x_q$}{Query variable}
+%     \entry{$x_e$}{Observed variable (evidence).}
+%     \entry{$x^c$}{Complement state}
+%     \entry{$\underline{P}(x)$}{Lower bound.}
+%     \entry{$\overline{P}(x)$}{Upper bound.}
+%     \entry{$\underline{\overline{P}}(x)$}{Interval probability.}
+%     \entry{$K(X)$}{Credal set over $X$.}
+%     \entry{$ext[K(X)]$}{Extreme point of the credal set $K(X)$.}
+%     \entry{$U$}{Universe of random variables in network.}
+%     \entry{$A \independent{B}$}{Variable $A$ independent of $B$.}
+% \end{nomenclature}
+
+

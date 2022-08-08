@@ -1,0 +1,111 @@
+\section{Summary and Conclusion}
+\label{summa_conc}
+
+% \textcolor{red}{
+% It would be better what each chapter has the same volume of information, i.e., numbers of pages have to be close.
+% However, I know it is not easy to write much information at the conclusion.
+% But, You need to write 2 or 3 pages at least.
+% For example, please write \\
+% - Why did you choose this research \\
+% - What was the problem and motivated you to conduct the research \\
+% - What types of proposal was required \\
+% - How did you overcome the problems in terms of technologies \\
+% - How you could confirm effectiveness of the proposal \\
+% - and so on \\
+% }
+Making robots that follow people is one of the most exciting uses of robotics. 
+Long-term development can be done from there to provide other uses. At the moment, 
+there are few studies on employing robots to track a single object, and these studies 
+have mixed results.
+The bulk of problems with monitoring people or objects nowadays, in particular, 
+use cameras to collect data. It is simple to lose track of things due to the camera's 
+still constrained information-collection range and limitations in many complex 
+environmental situations. I decided to choose HFR system development as my thesis topic 
+as a result of these factors. My study for a graduation project specifically researches 
+for the employment of a 3D LiDAR user-following robot system.\\
+
+There are several challenges in the study process because there have not been many studies targeting at 
+utilizing 3D LiDAR to identify and track individuals. In contrast to utilizing a 
+camera, 3D LiDAR finds fewer characteristics in RGB or RGB-D pictures, making it 
+more difficult to identify humans. We had trouble locating and choosing 
+characteristics that can be employed in the robot system that follows people 
+comparing to using camera in the development of the point-cloud 
+user recognition algorithm since not all characteristics that are calculated using 
+collected point-clouds are useful. Because that feature does not yet exude 
+quiet, some algorithm will lengthen calculation times and some will produce noise during the detection. 
+The outcomes of training and testing are also poor since there is no environment 
+and training data. We have not been able to test in scenarios with more complexity. 
+Even if there are still many obstacles to overcome, we continue to work on 
+finishing the research since it is a promising and novel area that requires 
+further study in order to be effectively applied to human life.\\
+
+The HFR system with 3D LiDAR is proposed in the thesis, with the 3 key components 
+being SVM (online learning) for human tracking and detection, human filter based velocity as well as 
+PID control for guiding the robot to the user's position.
+We based on earlier research for the human identification and tracking section, 
+which uses online learning and a tracker to be able to spot individuals moving. 
+In order to increase the accuracy of persons detection, we also introduced a new 
+feature which is the volume feature to the SVM model.\\
+
+We have added RANSAC, which removes the point-cloud as a plane, and a boundary filter, 
+which is the ROI around the robot, before the human identification section in 
+order to increase the processing performance for the online learning in a certain time 
+period. In specific, only everything within 10 meters of the robot should be taken into account and we
+remove any extraneous objects from the ROI area. Both actions can save processing time and 
+eliminate noise. We tested the HFR pipeline in 3 different
+environments (Gazebo environment, university's corridor, and testing hall) and this
+pipeline performed well enough in all testing cases.\\
+
+
+
+% The robot can still find the person even when the robot misclassifies other objects
+% during the following process.
+% However, there are some weak points in this pipeline that needs to solve in the future:
+
+% \begin{enumerate}
+%     \item Robots can only follow the human position without avoiding obstacles
+%     \item If the environment has multiple people, especially when people are standing
+%           close to each other as groups, the robot can not distinguish which person to follow
+
+% \end{enumerate}
+
+Our study still has some limitations because of the limited research time 
+and the lack of expertise and understanding in robotics. Robots can only follow 
+people at the moment and they are also unable to go around barriers. In other words, 
+robots can only follow the human position without avoiding obstacles and if the environment has multiple people, especially when people are standing
+close to each other as groups, the robot can not distinguish which person to follow.
+The robot's movement is still fairly sluggish, and it does not react strongly 
+to objects that move quickly, particularly in areas with plenty of people and 
+items arranged side by side. If they are too close together, single items in 
+online learning are difficult to distinguish. 
+
+\newpage
+
+\section{Future Work}
+\label{future_work}
+
+Since the HFR system employing 3D LiDAR still has numerous limitations, more study 
+into this area may be beneficial. By integrating 3D LiDAR with the camera, 
+for instance, it is easier to recognize several individuals standing near to 
+one another or people standing next to another item. LiDAR offers precise 3D 
+geometry, whereas cameras record additional contextual data 
+\cite{fusionlidarandcamera}. In short, we want to fuse other sensors to add more necessary features and better deal with challenging situations such as groups
+mentioning in section \ref{summa_conc}.\\
+
+With regards to the issue of navigation and control, the research still only 
+uses a basic PID algorithm to move the robot to a person's position. 
+To avoid colliding with, harming, or hurting the surrounding environment or the 
+robot itself, the robot must be able to avoid obstacles in the fully autonomous 
+problem. As a result, the intergration of algorithms such as A*, D*, RRT, 
+and others \cite{lspathplanning} should be researched in order to improve and enhance the 
+HFR system in addition to obstacle avoidance. In other words, research works require combining obstacles avoidance to make the robot follow the human more efficiently.\\
+
+In the realm of control, PID is still a reliable and straightforward control 
+algorithm. The study's findings, however, show that PID is still not particularly 
+adept at tracking individuals. The future research can utilize MPC instead of PID 
+to follow the path from the robot to the location of the human without the robot 
+following straight to the position of the person as in the current study since 
+MPC has numerous notable benefits over PID \cite{comparepidmpc}.
+
+% Fuse other sensors to add more necessary features to better deal with challenging situations such as groups
+

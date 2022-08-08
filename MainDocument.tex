@@ -1,0 +1,241 @@
+\documentclass[12pt, oneside]{book} 
+\pagestyle{plain}
+
+% The \usepackage{} command will import predefined fonts, symbols, environments, etc.  For example, the ams packages below come from the American Mathematical Society and include all kinds of useful math symbols like integrals
+\usepackage{algorithm,algpseudocode}
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   		% ... or a4paper or a5paper or letterpaper
+%\geometry{landscape}                		% Activate for for rotated page geometry
+\usepackage[pdftex]{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode	
+\usepackage{setspace}
+\usepackage{physics}
+\usepackage{subcaption}
+% \usepackage[numbers]{natbib}
+\usepackage{pdfpages}
+\usepackage{bm}
+\usepackage{wrapfig}				% enables the use of \wrapfig, for figures with text wrapped around them
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\usepackage{bibentry} % for list of publications
+\usepackage{hyperref} % create hyper link
+
+% \usepackage[english]{babel}
+\graphicspath{{images/}{{\subfix{images/}}}}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{shapes,calc,positioning}
+\tdplotsetmaincoords{70}{120}
+% \usepackage{siunitx}
+\usepackage{adjustbox}
+% \usepackage{xcolor} %% Text color
+\usepackage{blindtext}
+\usepackage{subfiles} % Best loaded last in the preamble
+\usepackage{multicol,multirow}  %% Figure in two columns
+\usepackage{mathtools, nccmath}
+
+\usepackage{lipsum}			% gives access to \lipsum, which dumps some latin text into your document as filler if you want to check formatting
+
+% \usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{cleveref}
+
+%reference part
+% \usepackage{biblatex} %Imports biblatex package
+\usepackage[sorting=none]{biblatex}
+\addbibresource{mybib.bib} %Import the bibliography file
+
+
+
+% Here we set the page dimensions to match the standard thesis format.  These values should not be changed.
+%%% SET LENTGH AND WIDTH %%%
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{8.5in}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\marginparsep}{0pt}
+\setlength{\marginparwidth}{1in}
+
+%self new commands settings
+\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
+\newcommand\clearrow{\global\let\rowmac\relax}
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+\newcommand{\taninv}{\tan^{-1}}
+
+%set up line spacing for the whole document
+% \doublespacing
+\onehalfspacing
+%In order to make a part of the text of your document singlespaced, you can put:
+% \begin{singlespace}
+% at the beginning of the text you want singlespaced, and
+% \end{singlespace}
+
+%\begin{document} starts LaTeX looking for actual content.  Everything above this point is purely formatting.
+\begin{document}
+
+%set up title page
+\begin{titlepage}
+  \begin{center}
+
+    % logo
+    \begin{figure}
+      % \vspace*{-4cm}
+      \hspace*{-0.7cm}
+      \centering
+      \includegraphics[scale=0.5]{figures/Nagoya_Logo.png}
+      \vspace{0.8cm}
+    \end{figure}
+
+    % \vspace* creates some vertical white space on the page to make the title page look more pleasing.  \vspace would do much the same thing, but would not insert the white space if we were at the top of a fresh page.  As this is the start of the document we're obviously at the beginning of a page, so the asterisk is necessary to ensure we still put in two cm of white space.
+    \vspace*{2cm}
+
+    {\Large \textbf{Development of Human Following Mobile Robot System with 3D LiDAR and Online Human Classifier}} % \huge sets the font size.  Other options include things like \large, \Large, \small, \tiny, etc.
+
+    \vspace*{2cm}
+    { Thesis submitted to the undergraduate degree program in G30 Automotive Mechanical Engineering, Department of Mechanical and Aerospace Engineering and G30 Undergraduate faculty of Nagoya University in partial fulfillment of the requirements for the degree of Bachelor of Engineering.}
+
+    \vspace*{2cm}
+    {\large \textbf{Le Nhat Quang}}
+
+    % \vspace{0.5cm}
+
+    {\large \textbf{081851013}}
+
+    \vspace*{1cm}
+
+    {\large \textbf{Supervised by Prof. Naoki Akai and Prof. Susumu Hara}}
+
+    \vspace*{2.0cm}
+
+    {\large Hara laboratory of Control Systems Engineering}
+
+    % \vspace{0.5cm}
+
+    % \begin{comment}
+    % {\large Autonomous Robots and Intelligent Control (ARIC) group}
+    % Please erase this since this is not official
+    % \end{comment}
+
+    % \vfill creates an arbitrary amount of vertical white space as necessary to fill the page
+    \vfill
+
+    July 2022
+
+    % \vspace*{3cm}
+
+  \end{center}
+\end{titlepage}
+
+% \frontmatter defines the pieces of the thesis which will use roman numerals for page numbering
+% \frontmatter 
+
+% The \mainmatter command defines the main body of the thesis and indicates where regular numbering starts
+% \mainmatter
+\mainmatter
+
+
+% \chapter{} and/or \chapter*{} will create a chapter in your thesis.  Including the asterisk will cause the chapter to not appear in the table of contents.
+
+\afterpage{\blankpage}
+
+%\tableofcontents will create a table of contents.  By default it will include entries for any \chapter, \section, and \subsection command that appears in your thesis unless you have called the tag with an asterisk
+% \tableofcontents
+
+\begin{singlespace}
+  \tableofcontents
+\end{singlespace}
+
+% \chapter*{Dedication}
+% \input{Chapters/Dedication}
+% \afterpage{\blankpage}
+
+% \chapter*{Abstract}
+% \input{Chapters/Abstract}
+% % \afterpage{\blankpage}
+
+% \begin{singlespace}
+%   \chapter*{Abstract}
+%   \input{Chapters/Abstract}
+% \end{singlespace}
+
+% \chapter*{Declaration}
+% \input{Chapters/Declaration}
+% \afterpage{\blankpage}
+
+% \chapter{List of Publications}
+% \input{Chapters/Publications}
+% \afterpage{\blankpage}
+
+%list all tables and figures
+\listoftables
+% \listoffigures
+
+\begin{singlespace}
+  \listoffigures
+\end{singlespace}
+
+\chapter*{Abbreviations and nomenclature}
+\input{Chapters/Nomenclature}
+
+\chapter{Introduction}
+\label{Chap:Intro}
+\input{Chapters/Chap1_Introduction}
+
+\chapter{Related research}
+\label{Chap:Related_research}
+\input{Chapters/Chap2_Related_Research}
+
+\chapter{Proposed System for Human Following Robot}
+\label{Chap:Proposed_system}
+\input{Chapters/Chap3_HFR_system}
+
+\chapter{Experimental Setup and Results}
+\label{Chap:ExperimentSetup_Results}
+\input{Chapters/Chap4_Experimental_Setup_and_Results}
+
+\chapter{Conclusions and Future Work}
+\label{Chap:Conclusion_FutureWork}
+\input{Chapters/Chap5_Conclusion_and_Future_work}
+
+
+% the \appendix tag tells LaTeX where it should start labelling chapters with letters (denoting appendices) rather than numbers (denoting main chapters)
+% \appendix 
+
+% \chapter{Appendix title (if needed)}
+% \input{Chapters/Appendix}
+
+% \chapter{}
+% \input{Chapters/Appendix_two}
+
+% \bibliographystyle command to choose the format of your bibliography. More examples of bibliography styles can be found at https://www.overleaf.com/learn/latex/Bibtex_bibliography_styles
+% \bibliographystyle{unsrtnat}
+
+% \bibliography is the command for the actual file containing your bibliographic data. This file can be produced manually or automatically using software such as BibTeX. Both options can work, however, learning to use BibTex is beneficial in the long run. An example of the format needed to generate your own bibliography file can be found as the bibliography.bib file here provided.
+
+% \bibliography{mybib}
+
+%   \nocite{*}
+%   \printbibliography %Prints bibliography
+
+\chapter{Acknowledgements}
+\input{Chapters/Acknowledgments}
+% \afterpage{\blankpage}
+
+\chapter{References}
+\nocite{*}
+\printbibliography[heading=none]
+
+\end{document}
