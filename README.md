@@ -1,4 +1,4 @@
-### Undergraduate thesis
+## Undergraduate thesis
 
 ---
 
